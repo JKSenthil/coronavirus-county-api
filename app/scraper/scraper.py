@@ -9,7 +9,6 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 url = "https://coronavirus.1point3acres.com/en"
 states = ["New York", "Washington", "California", "Massachusetts",
@@ -23,9 +22,10 @@ states = ["New York", "Washington", "California", "Massachusetts",
           "Kansas", "Oklahoma", "Hawaii", "South Dakota", "Wyoming",
           "Missouri", "Montana", "Delaware", "Idaho", "Alaska", "North Dakota", "West Virginia"]
 
-@cached(cache=TTLCache(maxsize=2, ttl=86400))
+@cached(cache=TTLCache(maxsize=3, ttl=86400))
 def retrieve_data():
     data = {}
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get(url)
     for state in states:
         data[state] = {}
