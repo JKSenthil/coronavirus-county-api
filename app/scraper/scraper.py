@@ -44,7 +44,7 @@ def retrieve_data():
             deaths = d[i + 2].split("+")[0]
             data[state][county] = {}
             data[state][county]['confirmed'] = int(confirmed)
-            data[state][county]['deaths'] = deaths
+            data[state][county]['deaths'] = int(deaths)
 
         driver.execute_script("arguments[0].click();", span)
     return data
