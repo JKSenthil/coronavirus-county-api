@@ -23,7 +23,7 @@ states = ["New York", "Washington", "California", "Massachusetts",
           "Kansas", "Oklahoma", "Hawaii", "South Dakota", "Wyoming",
           "Missouri", "Montana", "Delaware", "Idaho", "Alaska", "North Dakota", "West Virginia"]
 
-@cached(cache=TTLCache(maxsize=3, ttl=86400))
+@cached(cache=TTLCache(maxsize=2, ttl=86400))
 def retrieve_data():
     data = {}
     driver.get(url)
