@@ -1,5 +1,6 @@
 import os
 from selenium import webdriver
+from cachetools import cached, TTLCache
 
 # enables use of selenium on heroku
 chrome_options = webdriver.ChromeOptions()
@@ -22,9 +23,9 @@ states = ["New York", "Washington", "California", "Massachusetts",
           "Kansas", "Oklahoma", "Hawaii", "South Dakota", "Wyoming",
           "Missouri", "Montana", "Delaware", "Idaho", "Alaska", "North Dakota", "West Virginia"]
 
-data = {}
-
+@cached(cache=TTLCache(maxsize=3, ttl=86400))
 def retrieve_data():
+    data = {}
     driver.get(url)
     for state in states:
         data[state] = {}
@@ -46,3 +47,4 @@ def retrieve_data():
             data[state][county]['deaths'] = deaths
 
         driver.execute_script("arguments[0].click();", span)
+    return data
