@@ -1,1 +1,1 @@
-web: python ./app/app.py
+web: gunicorn app:create_app\(\)

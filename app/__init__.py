@@ -1,7 +1,11 @@
 from flask import Flask
 
-app = Flask(__name__)
-
-from app import routes
-
-app.run()
+def create_app():
+    """
+    Creates application
+    :return: app
+    """
+    app = Flask(__name__)
+    with app.app_context():
+        from . import routes
+        return app
