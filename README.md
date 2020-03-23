@@ -1,4 +1,4 @@
-# Coronavirus US-County API
+# Edit: This API is deprecated! It has instead been merged with https://github.com/ExpDev07/coronavirus-tracker-api
 
 > Simple API for tracking the coronavirus (COVID-19, SARS-CoV-2), with per county data for each state
 
